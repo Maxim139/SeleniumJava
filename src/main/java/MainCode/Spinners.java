@@ -16,7 +16,7 @@ public static void spinnerListsTable(WebDriver driver){
 
 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-    wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector( // changed Presence to Visibilityof
         ".loader.show-border")));
     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(
         ".loader.show-border")));
@@ -54,5 +54,15 @@ public static void spinnerGlobalEnrichWizard(WebDriver driver){
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//loader//div[contains(@class, 'ng-star-inserted')]//mat-spinner")));
     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//loader//div[contains(@class, 'ng-star-inserted')]//mat-spinner")));
 }
+
+
+    public static void spinnerIntentPageFull(WebDriver driver){
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".loader")));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".loader")));
+
+    }
 
 }

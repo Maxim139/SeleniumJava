@@ -40,7 +40,10 @@ public class ADWithIntentLaunchFromCSV {
         sidebarMenu.intentButton(driver);
 
         // waiting until the spinner in the Lists table disappears
-        Spinners.spinnerListsTable(driver);
+        // Spinners.spinnerListsTable(driver);
+
+        Spinners.spinnerIntentPageFull(driver);
+
 
       //Clicking on the "+Discover With Intent" button
       ListsPages.clickToOpenWizard(driver);

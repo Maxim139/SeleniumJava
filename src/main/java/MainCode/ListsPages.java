@@ -18,17 +18,37 @@ public ListsPages(WebDriver driver){
 }
 
     
-public static void switchToCompanyLists(WebDriver driver){
+public static void switchToCompanyLists(WebDriver driver) throws InterruptedException{
     // clicking on the "Company lists" button
-    driver.findElement(By.xpath(
-        "//div[contains(@class, 'button-bar-container list-btn-bar switch-button-bar-container')]//button//span[contains(text(),'Company Lists')]"))
+
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+   // Thread.sleep(2500);
+
+    // wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".loader.show-border")));
+    // wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".loader.show-border")));
+
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
+        "//div[contains(@class, 'button-bar-container list-btn-bar switch-button-bar-container')]//button//span[contains(text(),'Company Lists')]")))
         .click();
+
+    // driver.findElement(By.xpath(
+    //     "//div[contains(@class, 'button-bar-container list-btn-bar switch-button-bar-container')]//button//span[contains(text(),'Company Lists')]"))
+    //     .click();
 }
 
     // clicking on the "+Discover/Enrich" button on lists pages
-public static void clickToOpenWizard(WebDriver driver){
-    driver.findElement(By.cssSelector("[lefticon='plus']")).click();
+public static void clickToOpenWizard(WebDriver driver) throws InterruptedException{
+
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+    wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[lefticon='plus']"))).click();
+
+    //Thread.sleep(600);
+
+    // driver.findElement(By.cssSelector("[lefticon='plus']")).click();
 }
+
     
 
 // waiting until the search input field is available and entering the search

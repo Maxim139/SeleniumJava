@@ -29,7 +29,7 @@ public class CompaniesSavedListTest {
     static WebDriver driver;
     static String filePath;
    // static String filePath = "E:\\DealSignal\\FilesFromAutoTests";
-    static String csvNamePattern = "Company-List-For-ATests.csv";
+    static String csvNamePattern = "Company-List-For-Atests.csv";
     static String listName = "Company List For ATests";
     static AssertionsListDetailsPage assertionsListDetailsPage;
 

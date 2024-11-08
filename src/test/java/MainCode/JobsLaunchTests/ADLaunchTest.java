@@ -38,11 +38,14 @@ public static void upgradePlanBefore() throws IOException, InterruptedException{
     SidebarMenu sidebarMenu = new SidebarMenu();
     sidebarMenu.discoveryButton(driver);
 
+    // waiting until the spinner in the Lists table disappears
+    Spinners.spinnerListsTable(driver);
+
     // clicking on the "Company lists" button
     ListsPages.switchToCompanyLists(driver);
 
     // waiting until the spinner in the Lists table disappears
-    Spinners.spinnerListsTable(driver);
+    //Spinners.spinnerListsTable(driver);
 
     // clicking on the "+Discover & Verify Companies" button
     ListsPages.clickToOpenWizard(driver);

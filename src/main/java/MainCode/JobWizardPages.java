@@ -207,9 +207,10 @@ public void selectFromCSV() throws InterruptedException{
 
     Thread.sleep(500);
 
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div//a//span[contains(text(),'From CSV')]"))).click();
-    
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div//a//span[text() = 'From CSV']"))).click();
 
+
+    // wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div//a//span[contains(text(),'From CSV')]"))).click();
 
 }
 

@@ -36,7 +36,9 @@ public class LDWithIntentLaunchFromCSV {
         SidebarMenu sidebarMenu = new SidebarMenu();
         sidebarMenu.intentButton(driver);
 
-        Spinners.spinnerListsTable(driver);
+       // Spinners.spinnerListsTable(driver);
+
+        Spinners.spinnerIntentPageFull(driver);
 
         //Clicking on the "+Discover With Intent" button
         ListsPages.clickToOpenWizard(driver);

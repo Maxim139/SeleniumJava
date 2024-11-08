@@ -10,6 +10,7 @@ import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,7 +26,9 @@ public class AssertionsJobWizard {
 public static void assertName(WebDriver driver){
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        int attempt = 1;
 
+       while(attempt < 6){
         try {
                 WebElement NameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".font-base-copy-bold-s.grayscale-c10.text-capitalize.one-liner-text")));
                     String Name = NameElement.getText();
@@ -38,10 +41,19 @@ public static void assertName(WebDriver driver){
             assertTrue(NameElement.isDisplayed(), "No name in the table (not displayed)"); // contact
                                                                                                           // name is
                                                                                                           // displayed
+
+                break;
+
         } catch (NoSuchElementException | TimeoutException e) {
-            fail("No name in the table");
+                fail("No name in the preview");
+             
+        } catch (StaleElementReferenceException e){
+                attempt++;
+                System.out.println("attempts in name assertion = " + attempt);
+                if (attempt == 6) fail("StaleElementReferenceException issue");
         }
 
+       }
 }
     
 
@@ -128,7 +140,7 @@ public static void assertDiscoveryJobLaunched(WebDriver driver){
 
 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     String snackText = wait.until(ExpectedConditions
-    .presenceOfElementLocated(By.cssSelector(".font-base-copy-body-s.description.ng-star-inserted"))).getText();
+    .visibilityOfElementLocated(By.cssSelector(".font-base-copy-body-s.description.ng-star-inserted"))).getText();
 assertEquals("Discovery job is launched successfully!", snackText, "Checking successful snackbar");
 }
 

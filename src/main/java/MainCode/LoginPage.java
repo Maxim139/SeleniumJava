@@ -20,9 +20,15 @@ public class LoginPage {
 //    String url = "https://preprod-dealsignal.netlify.app/";
 
      //pre-prod
-   String email="fortestob66@test.com";
-   String password="suiTDeal100";
+//    String email="fortestob66@test.com";
+//    String password="suiTDeal100";
+//    String url = "https://preprod-dealsignal.netlify.app/";
+
+ //pre-prod
+   String email="maksim@dealsignal.com";
+   String password="a815f4f6";
    String url = "https://preprod-dealsignal.netlify.app/";
+
 
     //staging
     // String email="maksim@dealsignal.com";

@@ -1,8 +1,11 @@
 package MainCode.JobsLaunchTests;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.io.IOException;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,6 +17,7 @@ import MainCode.Spinners;
 import MainCode.UpgradePlan;
 import MainCode.VerificationSettingsPage;
 import MainCode.Assertions.AssertionsJobWizard;
+import net.bytebuddy.asm.Advice.Return;
 
 public class LDWithIntentLaunchTest {
 
@@ -25,6 +29,7 @@ public class LDWithIntentLaunchTest {
   }
 
     @Test
+    // @RepeatedTest(10)
     void ldWithIntent() throws InterruptedException {
          WebDriver driver = new ChromeDriver();
 
@@ -36,7 +41,9 @@ public class LDWithIntentLaunchTest {
         SidebarMenu sidebarMenu = new SidebarMenu();
         sidebarMenu.intentButton(driver);
 
-        Spinners.spinnerListsTable(driver);
+     //   Spinners.spinnerListsTable(driver);
+
+        Spinners.spinnerIntentPageFull(driver);
 
         //Clicking on the "+Discover With Intent" button
         ListsPages.clickToOpenWizard(driver);
@@ -45,6 +52,12 @@ public class LDWithIntentLaunchTest {
         //waiting until the global loader in the LD with intent wizard disappears
         Spinners.spinnerGlobalCriteria(driver);
  
+
+
+
+        //fail("interim test is successfully completed");
+
+
 
         //Changing the job name
         JobWizardPages wizard = new JobWizardPages(driver);
