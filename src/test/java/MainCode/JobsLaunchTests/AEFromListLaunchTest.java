@@ -4,6 +4,7 @@ package MainCode.JobsLaunchTests;
 import java.io.IOException;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -28,6 +29,7 @@ public class AEFromListLaunchTest {
   }
 
     @Test
+    // @RepeatedTest(10)
     void aeFromList() throws InterruptedException {
          WebDriver driver = new ChromeDriver();
          JobWizardPages wizard = new JobWizardPages(driver);

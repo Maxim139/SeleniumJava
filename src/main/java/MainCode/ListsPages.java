@@ -4,7 +4,7 @@ package MainCode;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
-
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -28,10 +28,18 @@ public static void switchToCompanyLists(WebDriver driver) throws InterruptedExce
     // wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".loader.show-border")));
     // wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".loader.show-border")));
 
+    int counter = 0;
+    while(counter < 6){
+    try{
     wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
         "//div[contains(@class, 'button-bar-container list-btn-bar switch-button-bar-container')]//button//span[contains(text(),'Company Lists')]")))
         .click();
-
+    break;
+    } catch(ElementClickInterceptedException e){
+        counter++;
+        Thread.sleep(300);
+    }
+    }
     // driver.findElement(By.xpath(
     //     "//div[contains(@class, 'button-bar-container list-btn-bar switch-button-bar-container')]//button//span[contains(text(),'Company Lists')]"))
     //     .click();
