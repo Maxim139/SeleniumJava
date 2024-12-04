@@ -4,6 +4,7 @@ import java.io.IOException;
 
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,6 +28,7 @@ public static void upgradePlanBefore() throws IOException, InterruptedException{
 }
 
   @Test
+  //@RepeatedTest(10)
   void ADLaunch() throws InterruptedException {
     WebDriver driver = new ChromeDriver();
 
@@ -90,6 +92,6 @@ public static void upgradePlanBefore() throws IOException, InterruptedException{
     // checking if the Success snackbar received
     AssertionsJobWizard.assertDiscoveryJobLaunched(driver);
 
-    driver.quit();
+     driver.quit();
   }
 }

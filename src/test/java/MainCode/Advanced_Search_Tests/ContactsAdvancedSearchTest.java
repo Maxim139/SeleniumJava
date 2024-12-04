@@ -3,6 +3,7 @@ package MainCode.Advanced_Search_Tests;
 
 
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,6 +18,7 @@ import MainCode.Assertions.AssertionsAdvancedSearch;
 public class ContactsAdvancedSearchTest {
 
     @Test
+  // @RepeatedTest(10)
     public void contactsAdvancedSearch() throws InterruptedException {
 
         String recordsperPage = "100";

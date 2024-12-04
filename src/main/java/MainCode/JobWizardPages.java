@@ -51,8 +51,23 @@ public JobWizardPages(WebDriver driver){
 
     // Selecting some value in HQ Location filter
 public void selectHQLocation(String filterName) throws InterruptedException{
+    // driver.findElement(By.xpath("//div[@class='header']//span[text()='HQ Location']")).click();
     driver.findElement(By.xpath("//div[@class='header']//span[text()='HQ Location']")).click();
-    wait60.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()=' Company Location ']/../../..//div[text()=' " + filterName + " ']"))).click();
+
+    Actions actions = new Actions(driver);
+
+    WebElement filterNameElement = wait60.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()=' Company Location ']/../../..//div[text()=' " + filterName + " ']")));
+
+    actions.moveToElement(filterNameElement).build().perform();
+    
+    WebElement includeButton = driver.findElement(By.xpath("//span[text()=' Company Location ']/../../..//div[text()=' " + filterName + " ']/.."));
+
+    actions.moveToElement(includeButton).click().build().perform();
+
+    //Thread.sleep(1000);
+
+
+    //wait60.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()=' Company Location ']/../../..//div[text()=' " + filterName + " ']"))).click();
 }
 
 
