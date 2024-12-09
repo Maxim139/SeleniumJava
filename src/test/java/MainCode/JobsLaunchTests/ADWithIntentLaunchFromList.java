@@ -1,12 +1,12 @@
 package MainCode.JobsLaunchTests;
 
-
 import java.io.IOException;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 import MainCode.JobWizardPages;
 import MainCode.ListsPages;
 import MainCode.LoginPage;
@@ -16,82 +16,82 @@ import MainCode.UpgradePlan;
 import MainCode.VerificationSettingsPage;
 import MainCode.Assertions.AssertionsJobWizard;
 
-public class LDWithIntentLaunchTest {
+public class ADWithIntentLaunchFromList {
 
-     // Upgrade plan to add more available jobs to account before executing the tests to overcome the job limit
+   // Upgrade plan to add more available jobs to account before executing the tests to overcome the job limit
   @BeforeAll
-  public static void upgradePlanBefore() throws IOException, InterruptedException{
-      UpgradePlan upgradePlanObject = new UpgradePlan();
-      upgradePlanObject.upgradePlan();
-  }
+    public static void upgradePlanBefore() throws IOException, InterruptedException{
+    UpgradePlan upgradePlanObject = new UpgradePlan();
+    upgradePlanObject.upgradePlan();
+}
+
 
     @Test
-    // @RepeatedTest(10)
-    void ldWithIntent() throws InterruptedException {
+    void adWithIntentFromList() throws InterruptedException, IOException {
          WebDriver driver = new ChromeDriver();
 
         //login to DS
         LoginPage loginPage = new LoginPage();
         loginPage.login(driver);
 
+
         //clicking on the "Intent" button
         SidebarMenu sidebarMenu = new SidebarMenu();
         sidebarMenu.intentButton(driver);
 
-     //   Spinners.spinnerListsTable(driver);
+        // waiting until the spinner in the Lists table disappears
+        // Spinners.spinnerListsTable(driver);
 
         Spinners.spinnerIntentPageFull(driver);
 
-        //Clicking on the "+Discover With Intent" button
-        ListsPages.clickToOpenWizard(driver);
-        //driver.findElement(By.cssSelector("[lefticon='plus']")).click();
 
-        //waiting until the global loader in the LD with intent wizard disappears
-        Spinners.spinnerGlobalCriteria(driver);
- 
+      //Clicking on the "+Discover With Intent" button
+      ListsPages.clickToOpenWizard(driver);
 
+      //waiting until the global loader in the AD with intent wizard disappears
+      Spinners.spinnerGlobalCriteria(driver);
 
-
-        //fail("interim test is successfully completed");
-
-
-
+        
         //Changing the job name
         JobWizardPages wizard = new JobWizardPages(driver);
-        wizard.changeJobName("LD with Intent ");
+        wizard.changeJobName("AD with Intent ");
 
-     
-        //Selecting "C-Level" Seniority
-        wizard.selectSeniority("C Level");
+        //clicking on the "Verify Companies Only" boxed radiobox
+        wizard.clickOnVerifyCompaniesOnly();
 
-        //Selecting "Canada" in HQ Location
-        wizard.selectHQLocation("Canada");
+      
 
-        //Disable Mock Data
-        wizard.disableMockDataToggle();
+      //Disable Mock Data
+      wizard.disableMockDataToggle();
+
+       //selecting the "From List" option
+       wizard.selectFromList();        
+
+       //selecting list from dropdown
+       wizard.selectListFromDropdown("Company List For Atests");
 
         //Selecting the "1Password" in Intent Topics
         wizard.selectIntentTopic("1Password");
 
-        //Selecting the "50" on the Intent Score range slider
+        //Selectint the "70" on the Intent Score range slider
         wizard.selectIntentScore("70");
 
-       Thread.sleep(500);
+        Thread.sleep(1000);
 
-       //Clicking on the "Apply Filters" button
-       wizard.clickOnApplyFilters();
+        //Clicking on the "Apply Filters" button
+        wizard.clickOnApplyFilters();
+
+       //Wait until the spinner in AD with intent preview disappears
+       //Spinners.spinnerJobPreview(driver);
 
 
-       //Wait until the spinner in LD with intent preview disappears
-       Spinners.spinnerJobPreview(driver);
-
-       //checking if the LD with intent preview table contains contact name
+       //checking if the AD with intent preview table contains company name
        AssertionsJobWizard.assertName(driver);
 
-        //checking if the number of companies/contacts in LD with intent preview is not "0"
+
+        //checking if the number of estimated companies in preview is not "0"
         AssertionsJobWizard.assertPreviewCompanyCount(driver);
-        AssertionsJobWizard.assertPreviewContactCount(driver);
-   
+
         //wait while "Next Step" button is available
         wizard.clickNextStep();
 

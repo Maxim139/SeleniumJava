@@ -1,6 +1,5 @@
 package MainCode.ICP_Persona_IntentCriteria_Tests;
 
-import org.junit.jupiter.api.Test;
 
 import org.openqa.selenium.WebDriver;
 

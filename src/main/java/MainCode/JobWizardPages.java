@@ -1,16 +1,16 @@
 package MainCode;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Properties;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -22,7 +22,7 @@ public class JobWizardPages {
     private WebDriver driver;
     private WebDriverWait wait;
     private WebDriverWait wait60;
-    private Properties properties;
+    //private Properties properties;
 
 public JobWizardPages(WebDriver driver){
     this.driver = driver;
@@ -112,9 +112,18 @@ public void clickOnApplyFilters(){
 }
 
 //wait while "Next Step" button is available
-public void clickNextStep(){
+public void clickNextStep() throws InterruptedException{
 
+    int counter = 0;
+    while (counter < 6) {
+    try{
     wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[righticon='arrow-right']"))).click();
+    break;
+    } catch (StaleElementReferenceException | ElementClickInterceptedException e){
+        counter++;
+        Thread.sleep(300);
+    }
+    }
 }
 
 //clicking on the "Verify Companies Only" boxed radiobox in Intent job Wizard
@@ -177,8 +186,11 @@ driver.findElement(By.cssSelector(".font-components-button-s.grayscale-c9")).cli
 //Searching for on some list from dropdown menu in Job Wizard
 public void selectListFromDropdown(String listName) throws InterruptedException{
 
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//mat-form-field[contains(@class, 'mat-primary ng-star-inserted size-l mat-form-field-type-mat-input mat-form-field-appearance-fill')]"))).click();
+    // wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//mat-form-field[contains(@class, 'mat-primary ng-star-inserted size-l mat-form-field-type-mat-input mat-form-field-appearance-fill')]"))).click();
     
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//app-multi-tab-dropdown//mat-form-field[contains(@class, 'mat-primary')][contains(@class, 'ng-star-inserted')][contains(@class, 'size-l')][contains(@class, 'mat-form-field-type-mat-input')][contains(@class, 'mat-form-field-appearance-fill')]"))).click();
+
+
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//app-button-bar//button//span[text()='All']"))).click();
 
     //Actions actions = new Actions(driver);
@@ -228,6 +240,22 @@ public void selectFromCSV() throws InterruptedException{
     // wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div//a//span[contains(text(),'From CSV')]"))).click();
 
 }
+
+
+    //Selecting the "From List" option in LD/AD job wizards
+public void selectFromList() throws InterruptedException{
+
+    driver.findElement(By.xpath("//div[@class='criteria-dropdown-container']//button")).click();
+
+    Thread.sleep(500);
+
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div//a//span[text() = 'From List']"))).click();
+
+
+    // wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div//a//span[contains(text(),'From CSV')]"))).click();
+
+}
+
 
 // //uploading CSV file from OS file system
 // public void uploadCSV(String csvType) throws IOException{
@@ -293,7 +321,15 @@ public void uploadCSV(String csvType) throws IOException{
         String csvFilePath = tempFile.getAbsolutePath();
 
 
-    driver.findElement(By.cssSelector("[type='file']")).sendKeys(csvFilePath);
+    //driver.findElement(By.cssSelector("[type='file']")).sendKeys(csvFilePath);
+
+    if (csvType.equals("Contact")){
+        driver.findElement(By.xpath("//app-file-uploader[@formcontrolname='contactCsv']//input[@type='file']")).sendKeys(csvFilePath);
+        // driver.findElement(By.xpath("//app-file-uploader[formcontrolname='contactCsv']//input[type='file']")).sendKeys(csvFilePath);
+
+    } else{
+        driver.findElement(By.cssSelector("[type='file']")).sendKeys(csvFilePath);
+    }
 
 }
 

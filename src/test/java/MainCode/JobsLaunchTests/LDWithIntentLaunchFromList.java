@@ -1,6 +1,5 @@
 package MainCode.JobsLaunchTests;
 
-
 import java.io.IOException;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -16,7 +15,7 @@ import MainCode.UpgradePlan;
 import MainCode.VerificationSettingsPage;
 import MainCode.Assertions.AssertionsJobWizard;
 
-public class LDWithIntentLaunchTest {
+public class LDWithIntentLaunchFromList {
 
      // Upgrade plan to add more available jobs to account before executing the tests to overcome the job limit
   @BeforeAll
@@ -26,8 +25,7 @@ public class LDWithIntentLaunchTest {
   }
 
     @Test
-    // @RepeatedTest(10)
-    void ldWithIntent() throws InterruptedException {
+    void ldWithIntentFromList() throws InterruptedException, IOException {
          WebDriver driver = new ChromeDriver();
 
         //login to DS
@@ -38,7 +36,7 @@ public class LDWithIntentLaunchTest {
         SidebarMenu sidebarMenu = new SidebarMenu();
         sidebarMenu.intentButton(driver);
 
-     //   Spinners.spinnerListsTable(driver);
+       // Spinners.spinnerListsTable(driver);
 
         Spinners.spinnerIntentPageFull(driver);
 
@@ -50,12 +48,6 @@ public class LDWithIntentLaunchTest {
         Spinners.spinnerGlobalCriteria(driver);
  
 
-
-
-        //fail("interim test is successfully completed");
-
-
-
         //Changing the job name
         JobWizardPages wizard = new JobWizardPages(driver);
         wizard.changeJobName("LD with Intent ");
@@ -64,8 +56,10 @@ public class LDWithIntentLaunchTest {
         //Selecting "C-Level" Seniority
         wizard.selectSeniority("C Level");
 
-        //Selecting "Canada" in HQ Location
-        wizard.selectHQLocation("Canada");
+        //selecting the "From List" option
+        wizard.selectFromList();
+
+        wizard.selectListFromDropdown("Company List For Atests");
 
         //Disable Mock Data
         wizard.disableMockDataToggle();

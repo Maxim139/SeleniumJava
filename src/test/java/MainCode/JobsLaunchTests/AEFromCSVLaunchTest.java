@@ -17,7 +17,7 @@ import MainCode.UpgradePlan;
 import MainCode.VerificationSettingsPage;
 import MainCode.Assertions.AssertionsJobWizard;
 
-public class AEFromListLaunchTest {
+public class AEFromCSVLaunchTest {
 
 
      // Upgrade plan to add more available jobs to account before executing the tests to overcome the job limit
@@ -29,7 +29,7 @@ public class AEFromListLaunchTest {
 
     @Test
     // @RepeatedTest(10)
-    void aeFromList() throws InterruptedException {
+    void aeFromCSV() throws InterruptedException, IOException {
          WebDriver driver = new ChromeDriver();
          JobWizardPages wizard = new JobWizardPages(driver);
 
@@ -52,32 +52,29 @@ public class AEFromListLaunchTest {
         //Clicking on the "+Enrich Companies" button
         ListsPages.clickToOpenWizard(driver);
 
-        //slecting the "From Dealsignal List" option
-        wizard.selectFromDealsignalList();
-       
+        wizard.uploadCSV("Company");
 
         //waiting until the spinner disappears from the AE wizard
-        Spinners.spinnerGlobalEnrichWizard(driver);
-
-        //Searching "31.03 Company List For Tests" list from dropdown menu
-        wizard.selectListFromDropdown("Company List For Atests");
-
-
- 
-       //Wait until the spinner in AE wizard disappears
-       Spinners.spinnerGlobalEnrichWizard(driver);
+     //   Spinners.spinnerGlobalEnrichWizard(driver);
 
        //checking if the AE preview table contains company name
-       AssertionsJobWizard.assertName(driver);
+     //  AssertionsJobWizard.assertName(driver);
 
         //checking if the number of companies in AE preview is not "0"
-        AssertionsJobWizard.assertPreviewCompanyCount(driver);
+       // AssertionsJobWizard.assertPreviewCompanyCount(driver);
         
+        AssertionsJobWizard.assertPreviewCSVRowsCount(driver);
+
         //Changing the job name
         wizard.changeJobName("AE from List ");
 
        
         //wait while "Next Step" button is available
+       wizard.clickNextStep();
+
+       Thread.sleep(300);
+
+       //clicking on "Next Step" button on Mapping page
        wizard.clickNextStep();
 
         //clicking on the "Launch Job" button

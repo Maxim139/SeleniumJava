@@ -3,7 +3,6 @@ package MainCode.Advanced_Search_Tests;
 
 
 
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

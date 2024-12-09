@@ -178,7 +178,7 @@ public static void assertEnrichmentJobLaunched(WebDriver driver){
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
-        String snackText = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".font-base-copy-body-s.description.ng-star-inserted"))).getText();
+        String snackText = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".font-base-copy-body-s.description.ng-star-inserted"))).getText();
         assertEquals("Enrichment launched successfully!", snackText, "Checking 'Success' snackbar");
 }
 
