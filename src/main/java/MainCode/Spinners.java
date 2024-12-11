@@ -6,7 +6,7 @@ import java.time.Duration;
 import org.openqa.selenium.TimeoutException;
 
 import org.openqa.selenium.By;
-
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -28,17 +28,18 @@ WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
 //waiting until the global loader in the AD wizard disappears
 public static void spinnerGlobalCriteria(WebDriver driver){
+
+
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     WebDriverWait wait60 = new WebDriverWait(driver, Duration.ofSeconds(60));
-try{
-    // wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(
-    //     ".criteria-loader")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
-            "//div[@class='criteria-loader']")));
-    wait60.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(
-        ".criteria-loader")));
+    
+ try{
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".criteria-loader")));
+      
+        wait60.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".criteria-loader")));
+
 } catch(TimeoutException e){
-    System.out.println("global criteria spinner hasn't displayed");
+    System.out.println("global criteria spinner has not been displayed");
 }
 }
 

@@ -169,6 +169,19 @@ public void selectSeniority(String filterValue){
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()=' Seniority ']/../../..//div[text()=' "+ filterValue +" ']"))).click();
 }
 
+//selecting the first X Company Name filter values
+public void selectCompanyName(int numberOfValues) throws InterruptedException{
+
+    driver.findElement(By.xpath("//div[@class='header']//span[text()='Company Name']")).click();
+
+
+    for(int i = 1; i <= numberOfValues; i++){
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='selection-list']/div[contains(@class, 'company-name-container')]"))).click();
+        Thread.sleep(500);
+    }
+   
+}
+
 
 //selecting the "From Dealsignal List" option in AE/LE wizards
 public void selectFromDealsignalList() throws InterruptedException{
@@ -241,6 +254,20 @@ public void selectFromCSV() throws InterruptedException{
 
 }
 
+
+//Selecting the "By Name" option in LD/AD job wizards
+public void selectByName() throws InterruptedException{
+
+    driver.findElement(By.xpath("//div[@class='criteria-dropdown-container']//button")).click();
+
+    Thread.sleep(500);
+
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div//a//span[text() = 'By Name']"))).click();
+
+
+    // wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div//a//span[contains(text(),'From CSV')]"))).click();
+
+}
 
     //Selecting the "From List" option in LD/AD job wizards
 public void selectFromList() throws InterruptedException{
