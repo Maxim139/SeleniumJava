@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
@@ -182,6 +183,26 @@ public void selectCompanyName(int numberOfValues) throws InterruptedException{
    
 }
 
+//selecting the X Contact Name filter values
+public void selectContactName(String contactName) throws InterruptedException{
+
+
+    List<WebElement> listOfElements = driver.findElements(By.xpath("//mat-expansion-panel[contains(@class, 'mat-expanded')]"));
+
+    //checking if "Contact Name" accordion is expanded or not
+    if (listOfElements.isEmpty()){
+    driver.findElement(By.xpath("//div[@class='header']//span[text()='Contact Name']")).click();
+    }
+
+    WebElement searchField = driver.findElement(By.cssSelector("[data-placeholder='Search contacts by name']"));
+
+    wait.until(ExpectedConditions.elementToBeClickable(searchField)).click();
+    searchField.sendKeys(contactName);
+
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='selection-list']/div[contains(@class, 'contact-name-container')]"))).click();
+    
+}
+
 
 //selecting the "From Dealsignal List" option in AE/LE wizards
 public void selectFromDealsignalList() throws InterruptedException{
@@ -193,6 +214,18 @@ Thread.sleep(500);
 
 //clicking on the "From Dealsignal list" button
 driver.findElement(By.cssSelector(".font-components-button-s.grayscale-c9")).click();        
+}
+
+//selecting the "By Name" option in AE/LE wizards
+public void selectByNameAELE() throws InterruptedException{
+
+    //clicking on the Three Dots button
+wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='button-bar']//button[contains(@class, 'mat-menu-trigger') and contains(@class, 'custom-btn-bar') and contains(@class, 'custom-btn-bar-s') and contains(@class, 'icon-btn-bar')]"))).click();
+
+Thread.sleep(500);
+
+//clicking on the "By Name" button
+driver.findElement(By.xpath("//span[@class = 'font-components-button-s grayscale-c9'][text()='By Name']")).click();        
 }
 
 

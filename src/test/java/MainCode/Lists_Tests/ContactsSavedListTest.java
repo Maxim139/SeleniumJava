@@ -13,14 +13,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import MainCode.AdvancedSearchPage;
-import MainCode.BrowserOptions;
 import MainCode.ListDetails;
 import MainCode.ListsPages;
 import MainCode.LoginPage;
-import MainCode.NewDirCreationAndRemove;
 import MainCode.SidebarMenu;
 import MainCode.Spinners;
 import MainCode.Assertions.AssertionsListDetailsPage;
+import MainCode.Utilities.BrowserOptions;
+import MainCode.Utilities.NewDirCreationAndRemove;
 
 public class ContactsSavedListTest {
     
