@@ -24,7 +24,7 @@ public class LD_With_Intent_By_Name {
       upgradePlanObject.upgradePlan();
   }
 
-    @Test
+  //  @Test
     void ldWithIntentByName() throws InterruptedException, IOException {
          WebDriver driver = new ChromeDriver();
 

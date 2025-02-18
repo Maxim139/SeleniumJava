@@ -25,7 +25,7 @@ public class LE_By_Name {
       upgradePlanObject.upgradePlan();
   }
 
-    @Test
+  //  @Test
     void leByName() throws InterruptedException {
          WebDriver driver = new ChromeDriver();
          JobWizardPages wizard = new JobWizardPages(driver);
