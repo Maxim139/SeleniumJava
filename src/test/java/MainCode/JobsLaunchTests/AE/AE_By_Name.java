@@ -27,7 +27,7 @@ public class AE_By_Name {
       upgradePlanObject.upgradePlan();
   }
 
-  //  @Test
+    @Test
     // @RepeatedTest(10)
     void aeByName() throws InterruptedException {
          WebDriver driver = new ChromeDriver();

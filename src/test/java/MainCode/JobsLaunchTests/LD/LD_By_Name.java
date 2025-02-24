@@ -25,7 +25,7 @@ public static void upgradePlanBefore() throws IOException, InterruptedException{
     upgradePlanObject.upgradePlan();
 }
 
-  //  @Test
+    @Test
     public void LDByName() throws InterruptedException, IOException{
 
         WebDriver driver = new ChromeDriver();

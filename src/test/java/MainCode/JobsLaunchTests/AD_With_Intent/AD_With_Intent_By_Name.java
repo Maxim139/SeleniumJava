@@ -26,7 +26,7 @@ public class AD_With_Intent_By_Name {
 }
 
 
-  //  @Test
+    @Test
     void adWithIntentByName() throws InterruptedException, IOException {
          WebDriver driver = new ChromeDriver();
 
