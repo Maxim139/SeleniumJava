@@ -26,7 +26,7 @@ public class LoginPage {
 
  //pre-prod
    String email="maksim@dealsignal.com";
-   String password="a815f4f6";
+   String password="tbf53sa8mNi7nbU";
    String url = "https://preprod-dealsignal.netlify.app/";
 
 
